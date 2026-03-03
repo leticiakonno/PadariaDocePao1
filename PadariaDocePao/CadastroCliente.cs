@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -15,7 +15,6 @@ namespace PadariaDocePao
             InitializeComponent();
         }
 
-        // Construtor usado quando queremos editar um cliente existente
         // ==============================================================
         // MÉTODO PARA CARREGAR DADOS DE UM CLIENTE EXISTENTE
         // ==============================================================
@@ -111,7 +110,7 @@ namespace PadariaDocePao
                     string sql;
                     if (_idClienteParaAlterar == null)
                     {
-                        // 🟢 INSERT — retorna o ID gerado automaticamente
+                        // INSERT — retorna o ID gerado automaticamente
                         sql = @"INSERT INTO tbClientes 
                         (nome_cliente, email_cliente, fone_cliente, cpf_cliente, data_nas_cliente, data_cad_cliente, end_cliente)
                         VALUES (@nome, @email, @fone, @cpf, @dataNas, @dataCad, @endereco);
@@ -119,7 +118,7 @@ namespace PadariaDocePao
                     }
                     else
                     {
-                        // 🟡 UPDATE
+                        // UPDATE
                         sql = @"UPDATE tbClientes 
                         SET nome_cliente = @nome, 
                             email_cliente = @email,
@@ -146,7 +145,7 @@ namespace PadariaDocePao
 
                         if (_idClienteParaAlterar == null)
                         {
-                            // 🔹 INSERT → obtém o ID correto
+                            // INSERT → obtém o ID correto
                             object result = comando.ExecuteScalar();
 
                             if (result != null && int.TryParse(result.ToString(), out int novoId))
@@ -162,7 +161,7 @@ namespace PadariaDocePao
                         }
                         else
                         {
-                            // 🔹 UPDATE
+                            // UPDATE
                             int linhasAfetadas = comando.ExecuteNonQuery();
 
                             if (linhasAfetadas > 0)
